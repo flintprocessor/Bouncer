@@ -110,7 +110,17 @@ open class Command {
                     optionToCheck = nil
                 }
             } else {
-                if argument.isOptionName {
+                if argument.isOptionNameWithValue {
+                    let (optionNameArgument, value) = argument.optionNameArgumentAndValue()!
+                    if let option = findOption(forArgument: optionNameArgument) {
+                        switch option.argumentType {
+                        case .none:
+                            optionValues.append(OptionValue(name: option.name))
+                        case .optional(_), .required:
+                            optionValues.append(OptionValue(name: option.name, value: value))
+                        }
+                    }
+                } else if argument.isOptionName {
                     optionToCheck = findOption(forArgument: argument)
                 } else {
                     operands.append(argument)
