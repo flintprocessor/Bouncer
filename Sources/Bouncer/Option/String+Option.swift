@@ -35,4 +35,12 @@ public extension String {
         return match(withRegex: shortOptionNameRegex)
             || match(withRegex: longOptionNameRegex)
     }
+
+    /// A Boolean value indicating whether the string
+    /// is option name with value or not by matching
+    /// with short and long option name with value regex.
+    public var isOptionNameWithValue: Bool {
+        return match(withRegex: shortOptionNameWithValueRegex)
+            || match(withRegex: longOptionNameWithValueRegex)
+    }
 }

@@ -27,6 +27,7 @@ import XCTest
 
 XCTMain([
     testCase(OptionNameValidationTests.allTests),
+    testCase(OptionNameWithValueValidationTests.allTests),
     testCase(OptionCompareWithArgumentTests.allTests),
     testCase(OptionValueArrayIterateTests.allTests),
     testCase(CommandFindOptionTests.allTests),
@@ -34,5 +35,5 @@ XCTMain([
     testCase(CommandValidateOperandsTests.allTests),
     testCase(CommandValidateOptionValuesTests.allTests),
     testCase(ProgramFindCommandTests.allTests),
-    testCase(ProgramRunTests.allTests),
+    testCase(ProgramRunTests.allTests)
 ])
