@@ -43,4 +43,22 @@ public extension String {
         return match(withRegex: shortOptionNameWithValueRegex)
             || match(withRegex: longOptionNameWithValueRegex)
     }
+
+    /// Parse option name and value if possible.
+    ///
+    /// - Returns: Option name and value if it is in correct format.
+    public func optionNameAndValue() -> (String, String)? {
+        if match(withRegex: shortOptionNameWithValueRegex) {
+            let separatorIndex = index(startIndex, offsetBy: 2)
+            let optionName = String(prefix(upTo: separatorIndex))
+            let value = String(suffix(from: separatorIndex))
+            return (optionName, value)
+        } else if match(withRegex: longOptionNameWithValueRegex) {
+            let separatorIndex = index(of: "=")!
+            let optionName = String(prefix(upTo: separatorIndex))
+            let value = String(suffix(from: index(separatorIndex, offsetBy: 1)))
+            return (optionName, value)
+        }
+        return nil
+    }
 }
