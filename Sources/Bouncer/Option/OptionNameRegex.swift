@@ -37,4 +37,4 @@ public let longOptionNameRegex = "--[[:alnum:]]{1,}"
 public let shortOptionNameWithValueRegex = "-[[:alnum:]]{1}.{1,}"
 /// Long option name with value regex `--[[:alnum:]]{1,}=.{1,}`.
 /// For example, `--path=.` or `--username=me`.
-public let longOptionNameWithValueRegex = "--[[:alnum:]]{1,}=.{1,}"
+public let longOptionNameWithValueRegex = "--[[:alnum:]]{1,}=.{0,}"
