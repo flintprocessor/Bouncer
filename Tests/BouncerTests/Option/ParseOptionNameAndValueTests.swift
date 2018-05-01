@@ -29,35 +29,35 @@ import XCTest
 final class ParseOptionNameAndValueTests: XCTestCase {
 
     func testParseShortOptionNameWithValue() {
-        let (optionName, value) = "-f./VALUE".optionNameAndValue()!
-        XCTAssertEqual(optionName, "-f")
+        let (optionNameArgument, value) = "-f./VALUE".optionNameArgumentAndValue()!
+        XCTAssertEqual(optionNameArgument, "-f")
         XCTAssertEqual(value, "./VALUE")
     }
 
     func testParseLongOptionNameWithValue() {
-        let (optionName, value) = "--path=./path".optionNameAndValue()!
-        XCTAssertEqual(optionName, "--path")
+        let (optionNameArgument, value) = "--path=./path".optionNameArgumentAndValue()!
+        XCTAssertEqual(optionNameArgument, "--path")
         XCTAssertEqual(value, "./path")
     }
 
     func testParseInvalidOptionNameWithValue() {
         // White space
-        XCTAssertNil("".optionNameAndValue())
-        XCTAssertNil(" ".optionNameAndValue())
-        XCTAssertNil("  ".optionNameAndValue())
+        XCTAssertNil("".optionNameArgumentAndValue())
+        XCTAssertNil(" ".optionNameArgumentAndValue())
+        XCTAssertNil("  ".optionNameArgumentAndValue())
         // Dash
-        XCTAssertNil("-".optionNameAndValue())
-        XCTAssertNil("--".optionNameAndValue())
-        XCTAssertNil("---".optionNameAndValue())
+        XCTAssertNil("-".optionNameArgumentAndValue())
+        XCTAssertNil("--".optionNameArgumentAndValue())
+        XCTAssertNil("---".optionNameArgumentAndValue())
         // Special characters
-        XCTAssertNil("-.".optionNameAndValue())
-        XCTAssertNil("--.123".optionNameAndValue())
-        XCTAssertNil("--1]23".optionNameAndValue())
+        XCTAssertNil("-.".optionNameArgumentAndValue())
+        XCTAssertNil("--.123".optionNameArgumentAndValue())
+        XCTAssertNil("--1]23".optionNameArgumentAndValue())
         // Invalid format
-        XCTAssertNil("---flag".optionNameAndValue())
-        XCTAssertNil("- -fVALUE".optionNameAndValue())
-        XCTAssertNil("- --flag=value".optionNameAndValue())
-        XCTAssertNil("--flagvalue".optionNameAndValue())
+        XCTAssertNil("---flag".optionNameArgumentAndValue())
+        XCTAssertNil("- -fVALUE".optionNameArgumentAndValue())
+        XCTAssertNil("- --flag=value".optionNameArgumentAndValue())
+        XCTAssertNil("--flagvalue".optionNameArgumentAndValue())
     }
 
     static let allTests = [

@@ -44,10 +44,10 @@ public extension String {
             || match(withRegex: longOptionNameWithValueRegex)
     }
 
-    /// Parse option name and value if possible.
+    /// Parse option name argument and value if possible.
     ///
-    /// - Returns: Option name and value if it is in correct format.
-    public func optionNameAndValue() -> (String, String)? {
+    /// - Returns: Option name argument and value if it is in correct format.
+    public func optionNameArgumentAndValue() -> (String, String)? {
         if match(withRegex: shortOptionNameWithValueRegex) {
             let separatorIndex = index(startIndex, offsetBy: 2)
             let optionName = String(prefix(upTo: separatorIndex))
