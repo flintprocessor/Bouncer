@@ -204,6 +204,20 @@ final class CommandParseArgumentsTests: XCTestCase {
         }
     }
 
+    func testParseShortOptionNameWithValueWithRequiredArgument() {
+        let path = Option(name: "path", shortName: "p", optional: true, argumentType: .required)
+        let command = Command(options: [path])
+
+        do {
+            let (operands, optionValues) = try command.parse(["-p./"])
+            XCTAssertTrue(operands.isEmpty)
+            XCTAssertTrue(optionValues.have(path))
+            XCTAssertEqual(optionValues.findArgument(for: path), "./")
+        } catch {
+            XCTFail()
+        }
+    }
+
     func testParseMultipleOperandsAndOptionValues() {
         let help = Option(name: "help", optional: true, argumentType: .none)
         let path = Option(name: "path", optional: true, argumentType: .required)
@@ -213,7 +227,7 @@ final class CommandParseArgumentsTests: XCTestCase {
         let command = Command(options: [help, path, level, username, option])
 
         do {
-            let (operands, optionValues) = try command.parse(["1", "--help", "2", "--path", ".", "3", "--level", "--username"])
+            let (operands, optionValues) = try command.parse(["1", "--help=2", "2", "--path", ".", "3", "--level", "--username"])
             XCTAssertEqual(operands, ["1", "2", "3"])
             XCTAssertTrue(optionValues.have(help))
             XCTAssertEqual(optionValues.findArgument(for: path), ".")
@@ -238,6 +252,7 @@ final class CommandParseArgumentsTests: XCTestCase {
         ("testParseRequiredArgumentOptionValueWithOtherOption", testParseRequiredArgumentOptionValueWithOtherOption),
         ("testParseRequiredArgumentOptionValueWithArgument", testParseRequiredArgumentOptionValueWithArgument),
         ("testIgnoreUnsupportedOption", testIgnoreUnsupportedOption),
+        ("testParseShortOptionNameWithValueWithRequiredArgument", testParseShortOptionNameWithValueWithRequiredArgument),
         ("testParseMultipleOperandsAndOptionValues", testParseMultipleOperandsAndOptionValues)
     ]
 }
