@@ -45,7 +45,8 @@ open class Program {
     /// - Throws: CommandParsingError, OperandParsingError or OptionParsingError.
     open func run(withArguments arguments: [String]) throws {
         let command = try findCommand(forArguments: arguments)
-        let (operands, optionValues) = try command.process(arguments)
+        let (operands, optionValues) = try command
+            .process(Array(arguments.suffix(from: command.name.count)))
         command.handler(self, command, operands, optionValues)
     }
 

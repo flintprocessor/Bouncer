@@ -25,16 +25,16 @@
 
 import Foundation
 
-/// Short option name regex `-[[:alnum:]]{1}`.
+/// Short option name regex `-[[:alnum:]]`.
 /// For example, `-v`, `-p` or `-h`.
-public let shortOptionNameRegex = "-[[:alnum:]]{1}"
-/// Long option name regex `--[[:alnum:]]{1,}`.
+public let shortOptionNameRegex = "-[[:alnum:]]"
+/// Long option name regex `--[[:alnum:]\\-]+`.
 /// For example, `--verbose`, `--path` or `--help`.
-public let longOptionNameRegex = "--[[:alnum:]]{1,}"
+public let longOptionNameRegex = "--[[:alnum:]\\-]+"
 
-/// Short option name with value regex `-[[:alnum:]]{1}.{1,}`.
+/// Short option name with value regex `-[[:alnum:]].+`.
 /// For example, `-pFILE` or `-uUSERNAME`.
-public let shortOptionNameWithValueRegex = "-[[:alnum:]]{1}.{1,}"
-/// Long option name with value regex `--[[:alnum:]]{1,}=.{1,}`.
+public let shortOptionNameWithValueRegex = "-[[:alnum:]].+"
+/// Long option name with value regex `--[[:alnum:]\\-]+=.+`.
 /// For example, `--path=.` or `--username=me`.
-public let longOptionNameWithValueRegex = "--[[:alnum:]]{1,}=.{1,}"
+public let longOptionNameWithValueRegex = "--[[:alnum:]\\-]+=.+"
