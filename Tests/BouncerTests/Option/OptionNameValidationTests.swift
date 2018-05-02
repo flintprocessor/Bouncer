@@ -43,13 +43,11 @@ final class OptionNameValidationTests: XCTestCase {
         // Dash
         XCTAssertFalse("-".isOptionName)
         XCTAssertFalse("--".isOptionName)
-        XCTAssertFalse("---".isOptionName)
         // Special characters
         XCTAssertFalse("-.".isOptionName)
         XCTAssertFalse("--.123".isOptionName)
         XCTAssertFalse("--1]23".isOptionName)
         // Invalid format
-        XCTAssertFalse("---flag".isOptionName)
         XCTAssertFalse("- -f".isOptionName)
         XCTAssertFalse("- --flag".isOptionName)
     }
