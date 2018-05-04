@@ -1,5 +1,6 @@
 //
-//  LinuxMain.swift
+//  OperandValue+Array.swift
+//  Bouncer
 //
 //  Copyright (c) 2018 Jason Nam (https://jasonnam.com)
 //
@@ -22,19 +23,16 @@
 //  THE SOFTWARE.
 //
 
-import XCTest
-@testable import BouncerTests
+import Foundation
 
-XCTMain([
-    testCase(OptionNameValidationTests.allTests),
-    testCase(OptionNameWithValueValidationTests.allTests),
-    testCase(OptionCompareWithArgumentTests.allTests),
-    testCase(OptionValueArrayIterateTests.allTests),
-    testCase(OperandValueArrayTests.allTests),
-    testCase(CommandFindOptionTests.allTests),
-    testCase(CommandParseArgumentsTests.allTests),
-    testCase(CommandValidateOperandsTests.allTests),
-    testCase(CommandValidateOptionValuesTests.allTests),
-    testCase(ProgramFindCommandTests.allTests),
-    testCase(ProgramRunTests.allTests)
-])
+// MARK: - OperandValue
+public extension Array where Element == String {
+
+    /// Get optional value at index.
+    ///
+    /// - Parameter index: Return value if exists at
+    ///                    certain index; otherwise, nil.
+    subscript(optional index: Int) -> String? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}

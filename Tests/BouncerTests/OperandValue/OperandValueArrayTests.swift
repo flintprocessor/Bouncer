@@ -1,5 +1,6 @@
 //
-//  LinuxMain.swift
+//  OperandValueArrayTests.swift
+//  BouncerTests
 //
 //  Copyright (c) 2018 Jason Nam (https://jasonnam.com)
 //
@@ -23,18 +24,20 @@
 //
 
 import XCTest
-@testable import BouncerTests
+@testable import Bouncer
 
-XCTMain([
-    testCase(OptionNameValidationTests.allTests),
-    testCase(OptionNameWithValueValidationTests.allTests),
-    testCase(OptionCompareWithArgumentTests.allTests),
-    testCase(OptionValueArrayIterateTests.allTests),
-    testCase(OperandValueArrayTests.allTests),
-    testCase(CommandFindOptionTests.allTests),
-    testCase(CommandParseArgumentsTests.allTests),
-    testCase(CommandValidateOperandsTests.allTests),
-    testCase(CommandValidateOptionValuesTests.allTests),
-    testCase(ProgramFindCommandTests.allTests),
-    testCase(ProgramRunTests.allTests)
-])
+final class OperandValueArrayTests: XCTestCase {
+
+    func testSubscript() {
+        let operandValues = ["1", "2", "3"]
+
+        XCTAssertEqual(operandValues[optional: 0], "1")
+        XCTAssertEqual(operandValues[optional: 1], "2")
+        XCTAssertEqual(operandValues[optional: 2], "3")
+        XCTAssertNil(operandValues[optional: 3])
+    }
+
+    static let allTests = [
+        ("testSubscript", testSubscript)
+    ]
+}

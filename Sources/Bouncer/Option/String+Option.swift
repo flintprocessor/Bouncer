@@ -35,4 +35,30 @@ public extension String {
         return match(withRegex: shortOptionNameRegex)
             || match(withRegex: longOptionNameRegex)
     }
+
+    /// A Boolean value indicating whether the string
+    /// is option name with value or not by matching
+    /// with short and long option name with value regex.
+    public var isOptionNameWithValue: Bool {
+        return match(withRegex: shortOptionNameWithValueRegex)
+            || match(withRegex: longOptionNameWithValueRegex)
+    }
+
+    /// Parse option name argument and value if possible.
+    ///
+    /// - Returns: Option name argument and value if it is in correct format.
+    public func optionNameArgumentAndValue() -> (String, String)? {
+        if match(withRegex: shortOptionNameWithValueRegex) {
+            let separatorIndex = index(startIndex, offsetBy: 2)
+            let optionName = String(prefix(upTo: separatorIndex))
+            let value = String(suffix(from: separatorIndex))
+            return (optionName, value)
+        } else if match(withRegex: longOptionNameWithValueRegex) {
+            let separatorIndex = index(of: "=")!
+            let optionName = String(prefix(upTo: separatorIndex))
+            let value = String(suffix(from: index(separatorIndex, offsetBy: 1)))
+            return (optionName, value)
+        }
+        return nil
+    }
 }

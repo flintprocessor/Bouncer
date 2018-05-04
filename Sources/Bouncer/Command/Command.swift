@@ -88,7 +88,20 @@ open class Command {
         var optionToCheck: Option?
         for argument in arguments {
             if let currentOption = optionToCheck {
-                if argument.isOptionName {
+                if argument.isOptionNameWithValue {
+                    switch currentOption.argumentType {
+                    case .required:
+                        throw OptionParsingError.missingOptionArgument(self, currentOption)
+                    case .optional(let defaultValue):
+                        optionValues.append(OptionValue(name: currentOption.name, value: defaultValue))
+                        optionToCheck = nil
+                        findOptionValueAndSet(forArgument: argument, optionValues: &optionValues)
+                    case .none:
+                        optionValues.append(OptionValue(name: currentOption.name))
+                        optionToCheck = nil
+                        findOptionValueAndSet(forArgument: argument, optionValues: &optionValues)
+                    }
+                } else if argument.isOptionName {
                     switch currentOption.argumentType {
                     case .required:
                         throw OptionParsingError.missingOptionArgument(self, currentOption)
@@ -110,7 +123,9 @@ open class Command {
                     optionToCheck = nil
                 }
             } else {
-                if argument.isOptionName {
+                if argument.isOptionNameWithValue {
+                   findOptionValueAndSet(forArgument: argument, optionValues: &optionValues)
+                } else if argument.isOptionName {
                     optionToCheck = findOption(forArgument: argument)
                 } else {
                     operands.append(argument)
@@ -138,6 +153,23 @@ open class Command {
     /// - Returns: Option if exists, nil if argument is not option name or option does not exist.
     open func findOption(forArgument argument: String) -> Option? {
         return options.first { $0 == argument }
+    }
+
+    /// Find option, option value and set on array.
+    ///
+    /// - Parameters:
+    ///   - argument: Argument to parse.
+    ///   - optionValues: Option value array. inout.
+    open func findOptionValueAndSet(forArgument argument: String, optionValues: inout [OptionValue]) {
+        guard let (optionNameArgument, value) = argument.optionNameArgumentAndValue() else { return }
+        if let option = findOption(forArgument: optionNameArgument) {
+            switch option.argumentType {
+            case .none:
+                optionValues.append(OptionValue(name: option.name))
+            case .optional(_), .required:
+                optionValues.append(OptionValue(name: option.name, value: value))
+            }
+        }
     }
 
     /// Validate operands and return error if needed.

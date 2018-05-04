@@ -1,5 +1,5 @@
 //
-//  OptionNameValidationTests.swift
+//  OptionNameWithValueValidationTests.swift
 //  BouncerTests
 //
 //  Copyright (c) 2018 Jason Nam (https://jasonnam.com)
@@ -26,34 +26,38 @@
 import XCTest
 @testable import Bouncer
 
-final class OptionNameValidationTests: XCTestCase {
+final class OptionNameWithValueValidationTests: XCTestCase {
 
-    func testValidOptionNames() {
-        XCTAssertTrue("-f".isOptionName)
-        XCTAssertTrue("-1".isOptionName)
-        XCTAssertTrue("--flag".isOptionName)
-        XCTAssertTrue("--flag123".isOptionName)
+    func testValidOptionNameWithValue() {
+        XCTAssertTrue("-fVALUE".isOptionNameWithValue)
+        XCTAssertTrue("-1value".isOptionNameWithValue)
+        XCTAssertTrue("-p./path".isOptionNameWithValue)
+        XCTAssertTrue("--flag=value".isOptionNameWithValue)
+        XCTAssertTrue("--flag123=VALUE".isOptionNameWithValue)
+        XCTAssertTrue("--path=./path".isOptionNameWithValue)
     }
 
-    func testInvalidOptionNames() {
+    func testInvalidOptionNameWithValue() {
         // White space
-        XCTAssertFalse("".isOptionName)
-        XCTAssertFalse(" ".isOptionName)
-        XCTAssertFalse("  ".isOptionName)
+        XCTAssertFalse("".isOptionNameWithValue)
+        XCTAssertFalse(" ".isOptionNameWithValue)
+        XCTAssertFalse("  ".isOptionNameWithValue)
         // Dash
-        XCTAssertFalse("-".isOptionName)
-        XCTAssertFalse("--".isOptionName)
+        XCTAssertFalse("-".isOptionNameWithValue)
+        XCTAssertFalse("--".isOptionNameWithValue)
+        XCTAssertFalse("---".isOptionNameWithValue)
         // Special characters
-        XCTAssertFalse("-.".isOptionName)
-        XCTAssertFalse("--.123".isOptionName)
-        XCTAssertFalse("--1]23".isOptionName)
+        XCTAssertFalse("-.".isOptionNameWithValue)
+        XCTAssertFalse("--.123".isOptionNameWithValue)
+        XCTAssertFalse("--1]23".isOptionNameWithValue)
         // Invalid format
-        XCTAssertFalse("- -f".isOptionName)
-        XCTAssertFalse("- --flag".isOptionName)
+        XCTAssertFalse("---flag".isOptionNameWithValue)
+        XCTAssertFalse("- -fVALUE".isOptionNameWithValue)
+        XCTAssertFalse("- --flag=value".isOptionNameWithValue)
     }
 
     static let allTests = [
-        ("testValidOptionNames", testValidOptionNames),
-        ("testInvalidOptionNames", testInvalidOptionNames)
+        ("testValidOptionNameWithValue", testValidOptionNameWithValue),
+        ("testInvalidOptionNameWithValue", testInvalidOptionNameWithValue)
     ]
 }
