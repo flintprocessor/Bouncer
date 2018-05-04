@@ -10,7 +10,7 @@ let package = Package(
             targets: ["Bouncer"]),
         .executable(
             name: "git-mock",
-            targets: ["git-mock"])
+            targets: ["git-mock"]),
     ],
     targets: [
         .target(
@@ -20,6 +20,6 @@ let package = Package(
             dependencies: ["Bouncer"]),
         .target(
             name: "git-mock",
-            dependencies: ["Bouncer"])
+            dependencies: ["Bouncer"]),
     ]
 )

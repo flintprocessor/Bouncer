@@ -26,21 +26,11 @@
 import Foundation
 import Bouncer
 
-private let quietOption =
-    Option(name: "quiet", shortName: "q",
-           optional: true, argumentType: .none)
-private let bareOption =
-    Option(name: "bare",
-           optional: true, argumentType: .none)
-private let templateOption =
-    Option(name: "template",
-           optional: true, argumentType: .required)
-private let separateGitDirOption =
-    Option(name: "separate-git-dir",
-           optional: true, argumentType: .required)
-private let sharedOption =
-    Option(name: "shared",
-           optional: true, argumentType: .optional("group"))
+let quietOption =          Option(name: "quiet", shortName: "q", optional: true, argumentType: .none)
+let bareOption =           Option(name: "bare", optional: true, argumentType: .none)
+let templateOption =       Option(name: "template", optional: true, argumentType: .required)
+let separateGitDirOption = Option(name: "separate-git-dir", optional: true, argumentType: .required)
+let sharedOption =         Option(name: "shared", optional: true, argumentType: .optional("group"))
 
 let initCommand = Command(
     name: ["init"],
