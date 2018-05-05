@@ -1,9 +1,12 @@
-# **Bouncer**
-
-[![Build Status](https://travis-ci.org/flintbox/Bouncer.svg?branch=master)](https://travis-ci.org/flintbox/Bouncer)
-[![GitHub release](https://img.shields.io/github/release/flintbox/Bouncer.svg)](https://github.com/flintbox/Bouncer/releases)
-[![Swift Package Manager](https://img.shields.io/badge/Swift%20PM-compatible-orange.svg)](https://swift.org/package-manager)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/flintbox/Bouncer/blob/master/LICENSE)
+<div align="center"><img src="/Assets/logo.svg" width="300" /></div>
+<h1 align="center">
+  <b>Bouncer</b>
+  <br>
+  <a href="https://travis-ci.org/flintbox/Bouncer"><img src="https://travis-ci.org/flintbox/Bouncer.svg?branch=master" alt="Build Status" /></a>
+  <a href="https://github.com/flintbox/Bouncer/releases"><img src="https://img.shields.io/github/release/flintbox/Bouncer.svg" alt="GitHub release" /></a>
+  <a href="https://swift.org/package-manager"><img src="https://img.shields.io/badge/Swift%20PM-compatible-orange.svg" alt="Swift Package Manager" /></a>
+  <a href="https://github.com/flintbox/Bouncer/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license" /></a>
+</h1>
 
 *Command line argument parser. Bouncer does **all the heavy lifting** for you. Dive into **business logic** in no time.*
 
@@ -183,6 +186,6 @@ shared       : group
 
 ## Contribute
 
-If you have good idea or suggestion? Please, don't hesitate to open a pull request or send me an email to [contact@jasonnam.com](mailto:contact@jasonnam.com).
+If you have good idea or suggestion? Please, don't hesitate to open a pull request or send me an [email](mailto:contact@jasonnam.com).
 
 Hope you enjoy building command line tool with Bouncer!
