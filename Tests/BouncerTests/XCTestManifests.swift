@@ -1,5 +1,6 @@
 //
-//  LinuxMain.swift
+//  XCTestManifests.swift
+//  BouncerTests
 //
 //  Copyright (c) 2018 Jason Nam (https://jasonnam.com)
 //
@@ -23,18 +24,21 @@
 //
 
 import XCTest
-@testable import BouncerTests
 
-var tests = [XCTestCaseEntry]()
-tests += OptionNameValidationTests.allTests()
-tests += OptionNameWithValueValidationTests.allTests()
-tests += OptionCompareWithArgumentTests.allTests()
-tests += OptionValueArrayIterateTests.allTests()
-tests += OperandValueArrayTests.allTests()
-tests += CommandFindOptionTests.allTests()
-tests += CommandParseArgumentsTests.allTests()
-tests += CommandValidateOperandsTests.allTests()
-tests += CommandValidateOptionValuesTests.allTests()
-tests += ProgramFindCommandTests.allTests()
-tests += ProgramRunTests.allTests()
-XCTMain(tests)
+#if !os(macOS)
+public func allTests() -> [XCTestCaseEntry] {
+    return [
+        testCase(OptionNameValidationTests.allTests),
+        testCase(OptionNameWithValueValidationTests.allTests),
+        testCase(OptionCompareWithArgumentTests.allTests),
+        testCase(OptionValueArrayIterateTests.allTests),
+        testCase(OperandValueArrayTests.allTests),
+        testCase(CommandFindOptionTests.allTests),
+        testCase(CommandParseArgumentsTests.allTests),
+        testCase(CommandValidateOperandsTests.allTests),
+        testCase(CommandValidateOptionValuesTests.allTests),
+        testCase(ProgramFindCommandTests.allTests),
+        testCase(ProgramRunTests.allTests)
+    ]
+}
+#endif
