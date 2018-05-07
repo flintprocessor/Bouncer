@@ -1,4 +1,4 @@
-<div align="center"><img src="/Assets/logo.svg" width="300" /></div>
+<div align="center"><img src="/Assets/logo.png" width="300" /></div>
 <h1 align="center">
   <b>Bouncer</b>
   <br>
