@@ -8,9 +8,6 @@ let package = Package(
         .library(
             name: "Bouncer",
             targets: ["Bouncer"]),
-        .executable(
-            name: "git-mock",
-            targets: ["git-mock"]),
     ],
     targets: [
         .target(
