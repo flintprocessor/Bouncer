@@ -29,9 +29,9 @@ import Foundation
 open class OptionValue {
 
     /// Parsed long option name.
-    open let name: String
+    public let name: String
     /// Option argument value if exists.
-    open let value: String?
+    public let value: String?
 
     /// Construct option value.
     ///

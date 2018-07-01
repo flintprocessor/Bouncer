@@ -30,13 +30,13 @@ import Foundation
 open class Option {
 
     /// Option name.
-    open let name: String
+    public let name: String
     /// Short option name.
-    open let shortName: Character?
+    public let shortName: Character?
     /// A Boolean value if this option is optional for the command.
-    open let optional: Bool
+    public let optional: Bool
     /// Argument accepting type.
-    open let argumentType: OptionArgumentType
+    public let argumentType: OptionArgumentType
 
     /// Construct option.
     ///
@@ -60,7 +60,7 @@ open class Option {
     ///   - option: Option to test.
     ///   - argument: Argument to test against the option.
     /// - Returns: True if the argument matches with option configuration; otherwise, false.
-    static open func ==(option: Option, argument: String) -> Bool {
+    static public func ==(option: Option, argument: String) -> Bool {
         if argument.match(withRegex: shortOptionNameRegex) {
             return option.shortName != nil ? argument == "-\(option.shortName!)" : false
         } else if argument.match(withRegex: longOptionNameRegex) {
