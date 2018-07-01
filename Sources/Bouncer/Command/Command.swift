@@ -34,13 +34,13 @@ open class Command {
 
     /// Command name. Sub command can be expressed
     /// as array with two or more strings.
-    open let name: [String]
+    public let name: [String]
     /// Operand accepting type.
-    open let operandType: OperandType
+    public let operandType: OperandType
     /// Accepting options.
-    open let options: [Option]
+    public let options: [Option]
     /// Command handler. Block to be executed with valid arguments.
-    open let handler: CommandHandler
+    public let handler: CommandHandler
 
     /// Construct command.
     ///

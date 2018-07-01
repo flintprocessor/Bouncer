@@ -30,7 +30,7 @@ import Foundation
 open class Program {
 
     /// Available commands.
-    open let commands: [Command]
+    public let commands: [Command]
 
     /// Construct program.
     ///
